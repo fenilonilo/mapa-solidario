@@ -65,7 +65,7 @@ if "help_clicked" not in st.session_state:
     st.session_state["help_clicked"] = False
 
 # Crie o botão 'Help' no centro da página
-if st.button('Help'):
+if st.button('Morador Aqui 🚩'):
     st.session_state["help_clicked"] = True
 
 # Crie um espaço reservado para a mensagem do botão 'Help'
@@ -79,7 +79,7 @@ if st.session_state["help_clicked"]:
     help_text.empty()
 
 # Adicione um texto "Clique aqui para obter ajuda" abaixo do botão 'Help' usando HTML
-st.markdown('<p style="text-align: center; font-family: Arial; font-size: 15px;">Clique aqui para obter ajuda</p>', unsafe_allow_html=True)
+st.markdown('<p style="text-align: center; font-family: Arial; font-size: 15px;">Clique aqui para informar a localização do morador de rua</p>', unsafe_allow_html=True)
 
 # Adicione um ícone de coração ao lado do botão 'Help' usando HTML
 st.markdown('<p style="text-align: center;"><span style="font-size: 40px; color: red;">&#10084;</span></p>', unsafe_allow_html=True)

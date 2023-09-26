@@ -53,3 +53,16 @@ st.image('Mapa Solidário Logo.png')
 # Caminho para a imagem
 st.markdown('<h1>Mapa Solidário</h1>', unsafe_allow_html=True)
 st.markdown('<h4>Conectando Corações, Transformando Vidas</h4>', unsafe_allow_html=True)
+
+# Dados para os blocos
+dados = [
+    {"titulo": "ONG 1", "descricao": "Descrição 1", "link": "https://www.bing.com"},
+    {"titulo": "ONG 2", "descricao": "Descrição 2", "link": "https://www.microsoft.com"},
+    {"titulo": "ONG 3", "descricao": "Descrição 3", "link": "https://www.microsoft.com"}
+    # Adicione mais blocos conforme necessário
+]
+
+for bloco in dados:
+    with st.expander(bloco["titulo"], expanded=False):
+        st.write(bloco["descricao"])
+        st.markdown(f"Participe: {bloco['link']}", unsafe_allow_html=True)
