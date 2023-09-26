@@ -1,38 +1,85 @@
 from collections import namedtuple
-import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import time
+from tools.Localizacao import Localizacao
 
-"""
-# Welcome to Streamlit!
+# Adicione estilos CSS para personalizar a aparência da página
+st.markdown("""
+<style>
+body {
+    color: #fff;
+    background-color: linear-gradient(to right, #0C0C0C, #4A4A4A);
+    font-family: Times New Roman;
+}
+div[data-testid="stImage"] {
+  width: 50%;
+  margin: auto;
+}
+div[data-testid="stImage"] img  {
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px grey;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    font-family: Arial;
+    font-size: 40px;
+}
+h4 {
+    text-align: center;
+    font-family: Arial;
+    font-size: 20px;
+}
+div.stButton > button:first-child {
+    display: block;
+    margin: 0 auto;
+    height: 80px;
+    width: 200px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+}
+</style>
+""", unsafe_allow_html=True)
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
 
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+# Use o método st.markdown para renderizar o código HTML e CSS
+st.image('Mapa Solidário Logo.png')
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+# Caminho para a imagem
+st.markdown('<h1>Mapa Solidário</h1>', unsafe_allow_html=True)
+st.markdown('<h4>Conectando Corações, Transformando Vidas</h4>', unsafe_allow_html=True)
 
-    points_per_turn = total_points / num_turns
+# Crie um espaço vazio para alinhar o botão 'Help' no centro da página
+st.write("\n\n\n\n")
 
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
+# Defina o estado inicial do botão 'Help'
+if "help_clicked" not in st.session_state:
+    st.session_state["help_clicked"] = False
 
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+# Crie o botão 'Help' no centro da página
+if st.button('Help'):
+    st.session_state["help_clicked"] = True
+
+# Crie um espaço reservado para a mensagem do botão 'Help'
+help_text = st.empty()
+
+# Se o botão 'Help' foi clicado, exiba a mensagem e depois apague-a
+if st.session_state["help_clicked"]:
+    Localizacao.pegar_localizacao()
+    help_text.markdown("<h3 style='text-align: center; font-family: Georgia;'>Localização Coletada!\n\t\t ✅</h3>", unsafe_allow_html=True)
+    time.sleep(2)
+    help_text.empty()
+
+# Adicione um texto "Clique aqui para obter ajuda" abaixo do botão 'Help' usando HTML
+st.markdown('<p style="text-align: center; font-family: Arial; font-size: 15px;">Clique aqui para obter ajuda</p>', unsafe_allow_html=True)
+
+# Adicione um ícone de coração ao lado do botão 'Help' usando HTML
+st.markdown('<p style="text-align: center;"><span style="font-size: 40px; color: red;">&#10084;</span></p>', unsafe_allow_html=True)
