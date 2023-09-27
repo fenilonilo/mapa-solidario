@@ -34,7 +34,7 @@ h1 {
 h4 {
     text-align: center;
     font-family: Arial;
-    font-size: 20px;
+    font-size: 13px;
 }
 div.stButton > button:first-child {
     display: block;

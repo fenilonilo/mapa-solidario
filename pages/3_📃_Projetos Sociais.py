@@ -32,7 +32,7 @@ h1 {
 h4 {
     text-align: center;
     font-family: Arial;
-    font-size: 20px;
+    font-size: 13px;
 }
 div.stButton > button:first-child {
     display: block;
@@ -54,11 +54,31 @@ st.image('Mapa Solidário Logo.png')
 st.markdown('<h1>Mapa Solidário</h1>', unsafe_allow_html=True)
 st.markdown('<h4>Conectando Corações, Transformando Vidas</h4>', unsafe_allow_html=True)
 
+descricao_1 = '''
+A ONG Anjos da Cidade dedica seus esforços à assistência de moradores de rua,
+fornecendo refeições,
+abrigo e apoio com o objetivo de melhorar suas condições de vida e reintegrá-los à sociedade.
+'''
+
+descricao_2 = '''
+A ONG Liiga do Bem concentra sua atenção em oferecer
+apoio abrigo e programas de reintegração social para moradores de rua,
+com a finalidade de melhorar suas vidas e facilitar sua inclusão na sociedade.
+'''
+
+descricao_3 = '''
+A Associação Tio Cleobaldo, sediada em Goiânia, Goiás,
+distribui refeições para moradores de rua há mais de 40 anos,
+contando com doações para sua operação. Seu objetivo é reduzir a vulnerabilidade,
+restaurando a dignidade e reintegrando essas pessoas à sociedade. 
+Além disso, oferecem apoio a crianças, gestantes e famílias em situação de rua.
+'''
+
 # Dados para os blocos
 dados = [
-    {"titulo": "ONG 1", "descricao": "Descrição 1", "link": "https://www.bing.com"},
-    {"titulo": "ONG 2", "descricao": "Descrição 2", "link": "https://www.microsoft.com"},
-    {"titulo": "ONG 3", "descricao": "Descrição 3", "link": "https://www.microsoft.com"}
+    {"titulo": "Anjos da Cidade", "descricao": f"{descricao_1}", "link": "https://www.anjosdacidade.org/"},
+    {"titulo": "Liiga do Bem", "descricao": f"{descricao_2}", "link": "https://coepbrasil.org.br/fome-ong-liiga-do-bem/"},
+    {"titulo": "Associação Tio Cleobaldo", "descricao": f"{descricao_3}", "link": "https://transformabrasil.com.br/projeto/associacao-do-tio-cleobaldo"}
     # Adicione mais blocos conforme necessário
 ]
 
