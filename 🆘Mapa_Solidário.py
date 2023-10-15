@@ -73,8 +73,8 @@ help_text = st.empty()
 
 # Se o botão 'Help' foi clicado, exiba a mensagem e depois apague-a
 if st.session_state["help_clicked"]:
-    Localizacao.pegar_localizacao()
     help_text.markdown("<h3 style='text-align: center; font-family: Georgia;'>Localização Coletada!\n\t\t ✅</h3>", unsafe_allow_html=True)
+    Localizacao.pegar_localizacao()
     time.sleep(2)
     help_text.empty()
 

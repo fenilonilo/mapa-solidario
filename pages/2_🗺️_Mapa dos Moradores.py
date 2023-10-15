@@ -8,7 +8,7 @@ from streamlit import components
 import os 
 
 st.markdown("<h1 style='text-align: center;'>Disposição dos Moradores de Rua</h1>", unsafe_allow_html=True)
-df = pd.read_csv('./pages/DataSet.csv')
+df = pd.read_csv('./pages/DataSet.csv',index_col=False)
 
 # Define the center of the city
 center_lat = -16.6869
