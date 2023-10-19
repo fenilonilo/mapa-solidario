@@ -54,6 +54,8 @@ st.image('Mapa Solidário Logo.png')
 st.markdown('<h1>Mapa Solidário</h1>', unsafe_allow_html=True)
 st.markdown('<h4>Conectando Corações, Transformando Vidas</h4>', unsafe_allow_html=True)
 
+
+#Descrição dos Textos Pre-Setados
 descricao_1 = '''
 A ONG Anjos da Cidade dedica seus esforços à assistência de moradores de rua,
 fornecendo refeições,
@@ -79,7 +81,6 @@ dados = [
     {"titulo": "Anjos da Cidade", "descricao": f"{descricao_1}", "link": "https://www.anjosdacidade.org/"},
     {"titulo": "Liiga do Bem", "descricao": f"{descricao_2}", "link": "https://coepbrasil.org.br/fome-ong-liiga-do-bem/"},
     {"titulo": "Associação Tio Cleobaldo", "descricao": f"{descricao_3}", "link": "https://transformabrasil.com.br/projeto/associacao-do-tio-cleobaldo"}
-    # Adicione mais blocos conforme necessário
 ]
 
 for bloco in dados:

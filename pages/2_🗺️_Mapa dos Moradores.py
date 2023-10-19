@@ -10,23 +10,23 @@ import os
 st.markdown("<h1 style='text-align: center;'>Disposição dos Moradores de Rua</h1>", unsafe_allow_html=True)
 df = pd.read_csv('./pages/DataSet.csv',index_col=False)
 
-# Define the center of the city
+# Define o centro da cidade
 center_lat = -16.6869
 center_lon = -49.2648
 
-# Calculate the distance between each point and the center of the city
+# Calcule a distância entre cada ponto e o centro da cidade
 df['Distancia'] = np.sqrt((df['latitude'] - center_lat) ** 2 + (df['longitude'] - center_lon) ** 2)
 
-# Define the sectors
+# Define os setores
 sectors = ['Central', 'Sul', 'Sudoeste', 'Sudeste', 'Norte', 'Noroeste', 'Nordeste']
 
-# Create a categorical variable for the sectors and define the categories
+# Crie uma variável categórica para os setores e defina as categorias
 df['Setor'] = pd.Categorical(df['latitude'], categories=sectors)
 
-# Set the threshold for the center sector
+# Definir o limite para o setor central
 center_threshold = 0.02
 
-# Assign each point to a sector based on its distance from the center and its relative position
+# Atribuir cada ponto a um setor com base em sua distância do centro e sua posição relativa
 df.loc[df['Distancia'] <= center_threshold, 'Setor'] = 'Central'
 df.loc[(df['Setor'].isnull()) & (df['latitude'] < center_lat), 'Setor'] = 'Sul'
 df.loc[(df['Setor'].isnull()) & (df['latitude'] > center_lat), 'Setor'] = 'Norte'
@@ -72,7 +72,7 @@ st.markdown("""
 
 
 
-# Criar uma coluna 'Cor' no DataFrame df e atribuir a cor correspondente a cada setor
+# Criar uma coluna 'Cor' no DataFrame e atribui a cor correspondente a cada setor
 df['Cor'] = df['Setor'].map(cor_setor)
 
 # Criar um mapa centrado nas médias dos valores de latitude e longitude
@@ -120,7 +120,11 @@ chart = alt.Chart(contagem_setores).mark_bar().encode(
 )
 
 
-# Display the map using the folium_static component
+# Display do mapa
 sf.folium_static(map)
+
 # Exibir o gráfico usando o st.altair_chart
 st.altair_chart(chart,  use_container_width=True)
+
+#   Nesse ponto e importânte resaltar que podem ser utilizados outros tipos de analises estatíosticas
+#enciam da base de dados. Com o objetivo de gerar mais informações.
