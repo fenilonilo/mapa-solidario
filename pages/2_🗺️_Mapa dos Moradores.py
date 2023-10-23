@@ -6,9 +6,12 @@ import folium
 import altair as alt
 from streamlit import components
 import os 
+import math
+from branca.element import IFrame
 
 st.markdown("<h1 style='text-align: center;'>Disposição dos Moradores de Rua</h1>", unsafe_allow_html=True)
-df = pd.read_csv('./pages/DataSet.csv',index_col=False)
+DTYPE = {'latitude':float, 'longitude':float}
+df = pd.read_csv('./pages/DataSet.csv',index_col=False,dtype=DTYPE)
 
 # Define o centro da cidade
 center_lat = -16.6869
@@ -78,9 +81,31 @@ df['Cor'] = df['Setor'].map(cor_setor)
 # Criar um mapa centrado nas médias dos valores de latitude e longitude
 map = folium.Map(location=[center_lat, center_lon], zoom_start=13)
 
+
 # Adicionar um marcador ao mapa para cada linha do DataFrame
 for _, row in df.iterrows():
-    info_pop_up = f"Região {row['Setor']}."
+    
+    qtd_moradores = 'Não Informada' if math.isnan(row['qtd']) else int(row['qtd'])
+    
+    #HTML ddo popup
+   
+    html = f"""
+            <html>
+            <head>
+            </head>
+            <body>
+                <div>
+                    <h3>INFORMAÇÕES</h3>
+                    <p><b>REGIÃO {row['Setor']}.</b></p>
+                    <p><b>NÚMERO APROXIMADO DE MORRADORES: {qtd_moradores}</b></p>
+                </div>
+            </body>
+            </html>
+            """
+    # Cria um iframe com o objeto HTML
+    iframe = IFrame(html, width=300, height=150)
+
+    info_pop_up = folium.Popup(iframe, max_width=300)
     folium.Circle(
         location=[row['latitude'], row['longitude']],
         radius=30,
